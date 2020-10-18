@@ -8,14 +8,23 @@ using System.Threading.Tasks;
 
 namespace Figures
 {
+    /// <summary>
+    /// Класс для работы с фигурами
+    /// </summary>
     public class Figure
     {
+        /// <summary>
+        /// Создание массивов объектов различных фигур
+        /// </summary>
         private Cirkle[] cirkles = new Cirkle[10];
         private Hexagon[] hexagons = new Hexagon[10];        
         private Rectangle[] rectangles = new Rectangle[10];
         private Square[] squares = new Square[10];
         private Trapezoid[] trapezoids = new Trapezoid[10];
         private Triangle[] triangles = new Triangle[10];
+        /// <summary>
+        /// Метод для ввода всех фигур
+        /// </summary>
         public void MenuFigures()
         {
             bool f = true;
@@ -42,8 +51,12 @@ namespace Figures
                 if (f)
                     Console.WriteLine("Должна быть задана хотя бы 1 фигура.");
             }
+            Console.Clear();
             Menu();
         }
+        /// <summary>
+        /// Основное меню
+        /// </summary>
         public void Menu()
         {
             bool f = true;
@@ -74,6 +87,9 @@ namespace Figures
             Console.WriteLine("Работа окончена.");
             Console.ReadKey();
         }
+        /// <summary>
+        /// Считает сумму всех площадей фигур
+        /// </summary>
         public void SummAllAreas()
         {
             double sum = 0;
@@ -88,6 +104,9 @@ namespace Figures
             }
             Console.WriteLine("Сумма площадей всех фигур - " + Math.Round(sum,2));
         }
+        /// <summary>
+        /// Создает окружности
+        /// </summary>
         public void EnterCirkles()
         {
             Console.WriteLine("Сколько таких фигур необходимо создать?");
@@ -114,6 +133,9 @@ namespace Figures
                 for (int i = kol; i < 10; i++)
                     cirkles[i] = new Cirkle(0);
         }
+        /// <summary>
+        /// Создает шестиугольники
+        /// </summary>
         public void EnterHexagons()
         {
             Console.WriteLine("Сколько таких фигур необходимо создать?");
@@ -140,6 +162,9 @@ namespace Figures
                 for (int i = kol; i < 10; i++)
                     hexagons[i] = new Hexagon(0);
         }
+        /// <summary>
+        /// Создает прямоугольники
+        /// </summary>
         public void EnterRectangles()
         {
             Console.WriteLine("Сколько таких фигур необходимо создать?");
@@ -166,6 +191,10 @@ namespace Figures
                 for (int i = kol; i < 10; i++)
                     rectangles[i] = new Rectangle(0, 0);
         }
+        /// <summary>
+        /// Считает средние периметры каждого из типов фигур
+        /// </summary>
+        /// <returns>Массив средних периметров для кадого типа фигур</returns>
         public double[] MidPerimeter()
         {
             double[] massP = { 0, 0, 0, 0, 0, 0 };
@@ -231,6 +260,9 @@ namespace Figures
                 massP[5] = massP[5] / i;
             return massP;
         }
+        /// <summary>
+        /// Выбирает наибольший периметр из массива
+        /// </summary>
         public void BiggestHalfPerimeterType()
         {
             double[] mass = MidPerimeter();
@@ -245,6 +277,9 @@ namespace Figures
                 }
             Console.WriteLine("Наибольший средний периметр у " + name + " - " + Math.Round(max,2));
         }
+        /// <summary>
+        /// Считает средний периметр для всех фигур
+        /// </summary>
         public void AllMidPerimeters()
         {
             double[] mass = MidPerimeter();
@@ -259,6 +294,9 @@ namespace Figures
             mid = mid/kol;
             Console.WriteLine("Cредний периметр всех фигур - " + Math.Round(mid, 2));
         }
+        /// <summary>
+        /// Создает квадраты
+        /// </summary>
         public void EnterSquares()
         {
             Console.WriteLine("Сколько таких фигур необходимо создать?");
@@ -285,6 +323,9 @@ namespace Figures
                 for (int i = kol; i < 10; i++)
                     squares[i] = new Square(0);
         }
+        /// <summary>
+        /// Создает трапеции
+        /// </summary>
         public void EnterTrapezoids()
         {
             Console.WriteLine("Сколько таких фигур необходимо создать?");
@@ -313,6 +354,9 @@ namespace Figures
                 for (int i = kol; i < 10; i++)
                     trapezoids[i] = new Trapezoid(0, 0, 0);
         }
+        /// <summary>
+        /// Создает треугольники
+        /// </summary>
         public void EnterTiangles()
         {
             Console.WriteLine("Сколько таких фигур необходимо создать?");
@@ -339,6 +383,9 @@ namespace Figures
                 for (int i = kol; i < 10; i++)
                     triangles[i] = new Triangle(0, 0);
         }
+        /// <summary>
+        /// Находит наибольшую фигуру по площади
+        /// </summary>
         public void BiggestAreaFigure()
         {
             double[] areas = { BiggestAreaCirkle(), BiggestAreaHexagon(), BiggestAreaSquare(), BiggestAreaRectangle(), BiggestAreaTrapezoid(), BiggestAreaTriangle() };
@@ -356,6 +403,10 @@ namespace Figures
             }
             Console.WriteLine("Наибольшая фигура по площади - " + names[num] + " " + (index[num]+1) + ". S = " + Math.Round(areas[num],2));
         }
+        /// <summary>
+        /// Находит номер наибольшей по площади фигуры для каждого типа 
+        /// </summary>
+        /// <returns>Массив номеров наибольших по площади фигур</returns>
         public double[] IndexOfBiggest()
         {
             int iCirkle = 0, iHex = 0, iSq = 0, iRek = 0, iTrap = 0, iTr = 0;
@@ -377,6 +428,10 @@ namespace Figures
             double[] index = { iCirkle, iHex, iSq, iRek, iTrap, iTr };
             return index;
         }
+        /// <summary>
+        /// Находит фигуру наибольшей площади среди окружностей
+        /// </summary>
+        /// <returns>Значение наибольшей площади</returns>
         public double BiggestAreaCirkle()
         {
             double max = cirkles[0].Area();
@@ -387,6 +442,10 @@ namespace Figures
             }
             return max;
         }
+        /// <summary>
+        /// Находит фигуру наибольшей площади среди шестиугольников
+        /// </summary>
+        /// <returns>Значение наибольшей площади</returns>
         public double BiggestAreaHexagon()
         {
             double max = hexagons[0].Area();
@@ -397,6 +456,10 @@ namespace Figures
             }
             return max;
         }
+        /// <summary>
+        /// Находит фигуру наибольшей площади среди квадратов
+        /// </summary>
+        /// <returns>Значение наибольшей площади</returns>
         public double BiggestAreaSquare()
         {
             double max = squares[0].Area();
@@ -407,6 +470,10 @@ namespace Figures
             }
             return max;
         }
+        /// <summary>
+        /// Находит фигуру наибольшей площади среди прямоугольников
+        /// </summary>
+        /// <returns>Значение наибольшей площади</returns>
         public double BiggestAreaRectangle()
         {
             double max = rectangles[0].Area();
@@ -417,6 +484,10 @@ namespace Figures
             }
             return max;
         }
+        /// <summary>
+        /// Находит фигуру наибольшей площади среди трапеций
+        /// </summary>
+        /// <returns>Значение наибольшей площади</returns>
         public double BiggestAreaTrapezoid()
         {
             double max = trapezoids[0].Area();
@@ -427,6 +498,10 @@ namespace Figures
             }
             return max;
         }
+        /// <summary>
+        /// Находит фигуру наибольшей площади среди треугольников
+        /// </summary>
+        /// <returns>Значение наибольшей площади</returns>
         public double BiggestAreaTriangle()
         {
             double max = triangles[0].Area();
